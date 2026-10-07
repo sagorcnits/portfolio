@@ -122,6 +122,7 @@ function MobileNav({ active }: { active: string }) {
 }
 
 // Desktop/tablet: sticky left column. Mobile: intro in flow plus a compact sticky top bar.
+// One <header> for both so the page has a single <h1>.
 export function Sidebar() {
   const active = useActiveSection(sectionIds)
 
@@ -129,15 +130,10 @@ export function Sidebar() {
     <>
       <MobileNav active={active} />
 
-      <header className="pt-14 pb-4 md:hidden">
-        <Intro />
-        <SocialLinks className="mt-8" />
-      </header>
-
-      <header className="hidden md:sticky md:top-0 md:flex md:h-dvh md:w-[36%] md:shrink-0 md:flex-col md:justify-between md:py-16 lg:w-[40%] lg:py-24">
+      <header className="pt-14 pb-4 md:sticky md:top-0 md:flex md:h-dvh md:w-[36%] md:shrink-0 md:flex-col md:justify-between md:py-16 lg:w-[40%] lg:py-24">
         <div>
           <Intro />
-          <nav aria-label="Sections" className="mt-16 lg:mt-20">
+          <nav aria-label="Sections" className="mt-16 hidden md:block lg:mt-20">
             <ul className="space-y-4">
               {navItems.map((item) => {
                 const isActive = active === item.id
@@ -173,9 +169,9 @@ export function Sidebar() {
             </ul>
           </nav>
         </div>
-        <div className="space-y-5">
+        <div className="mt-8 space-y-5 md:mt-0">
           <SocialLinks />
-          <p className="text-xs tracking-wide">{profile.location}</p>
+          <p className="hidden text-xs tracking-wide md:block">{profile.location}</p>
         </div>
       </header>
     </>

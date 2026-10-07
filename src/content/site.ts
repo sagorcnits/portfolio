@@ -33,7 +33,7 @@ export const about = {
     "I help startups turn ideas into working SaaS products — without the six-month build cycle.",
     "As Co-Founder & COO at Octarnal, I lead the design and delivery of AI-powered platforms, automation systems, and custom web applications for founders and businesses who need software that actually ships.",
     "Most of my clients come to me with one of three problems: a product idea and no technical team, an existing app that can't scale, or a business drowning in manual work that should be automated. I handle all three end-to-end — architecture, build, deployment, and the parts nobody warns you about.",
-    "I work closely with founders and growing businesses, often from the first whiteboard sketch to production, turning rough ideas into reliable, production-ready software.",
+    "I work closely with founders and growing businesses, often from the first whiteboard sketch to production, turning rough ideas into reliable, production-ready software — typically in TypeScript, with React and Next.js on the front end and Node.js and NestJS behind clean, well-documented APIs.",
   ],
 };
 

@@ -10,10 +10,17 @@ import {
 } from "@/components/portfolio/sections";
 import { Splash } from "@/components/portfolio/splash";
 import { WhatsAppButton } from "@/components/portfolio/whatsapp-button";
+import { jsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Splash />
       <div
         id="top"

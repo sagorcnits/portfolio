@@ -149,6 +149,16 @@
   opacity: 1;
   transform: none;
 }
+/* Above-the-fold variant: same fade, CSS-driven so it doesn't wait for hydration. */
+.reveal[data-eager] {
+  animation: reveal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes reveal-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /*
  * Load splash (~950ms): dark beat → S fades/scales 96→100% with a faint halo
@@ -261,6 +271,7 @@
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
   }
   .wa-ring {
     display: none;

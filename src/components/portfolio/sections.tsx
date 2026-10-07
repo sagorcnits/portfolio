@@ -24,27 +24,32 @@ function Section({
   label,
   children,
   className,
+  eager,
 }: {
   id: string;
   index?: string;
   label: string;
   children: ReactNode;
   className?: string;
+  eager?: boolean;
 }) {
+  const headingId = `${id}-heading`;
   return (
     <section
       id={id}
-      aria-label={label}
+      aria-labelledby={headingId}
       className={cn("py-20 md:py-24 lg:py-28", className)}
     >
-      <Reveal>
-        <div className="mb-12 flex items-center gap-4 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase md:mb-14">
+      <Reveal eager={eager}>
+        <h2 className="mb-12 flex items-center gap-4 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase md:mb-14">
           {index && (
-            <span className="tabular-nums text-foreground">{index}</span>
+            <span aria-hidden="true" className="tabular-nums text-foreground">
+              {index}
+            </span>
           )}
-          <span className="h-px w-8 bg-border" />
-          <span>{label}</span>
-        </div>
+          <span aria-hidden="true" className="h-px w-8 bg-border" />
+          <span id={headingId}>{label}</span>
+        </h2>
       </Reveal>
       {children}
     </section>
@@ -58,15 +63,16 @@ export function About() {
       index="01"
       label="About"
       className="pt-12 md:pt-16 lg:pt-24"
+      eager
     >
-      <Reveal>
+      <Reveal eager>
         <p className="text-2xl leading-snug font-medium tracking-tight text-foreground md:text-[1.75rem] lg:text-[2rem] lg:leading-[1.3]">
           {about.lead}
         </p>
       </Reveal>
       <div className="mt-12 grid gap-6 md:ml-[12%] lg:max-w-xl">
         {about.paragraphs.map((text, i) => (
-          <Reveal key={i} delay={i * 60}>
+          <Reveal key={i} delay={i * 60} eager>
             <p className="text-[1.0625rem] leading-relaxed">{text}</p>
           </Reveal>
         ))}
@@ -127,13 +133,13 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 export function Work() {
   return (
     <Section id="work" index="02" label="Selected Work">
-      <div className="border-b border-border">
+      <ul className="border-b border-border">
         {projects.map((project, i) => (
-          <Reveal key={project.name} delay={i * 50}>
+          <Reveal as="li" key={project.name} delay={i * 50}>
             <ProjectRow project={project} index={i} />
           </Reveal>
         ))}
-      </div>
+      </ul>
     </Section>
   );
 }
@@ -143,19 +149,22 @@ export function Experience() {
     <Section id="experience" index="03" label="Experience">
       <ol className="space-y-12 md:space-y-14">
         {experience.map((item, i) => (
-          <Reveal key={item.org + item.period} delay={i * 50}>
-            <li className="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-8">
-              <span className="pt-1 text-xs tracking-[0.15em] text-muted-foreground uppercase tabular-nums">
-                {item.period}
-              </span>
-              <div className="border-l border-border pl-6 md:pl-8">
-                <h3 className="text-lg font-medium md:text-xl">{item.org}</h3>
-                <p className="mt-1 text-sm text-foreground/75">{item.role}</p>
-                <p className="mt-4 max-w-lg text-[0.95rem] leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </li>
+          <Reveal
+            as="li"
+            key={item.org + item.period}
+            delay={i * 50}
+            className="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-8"
+          >
+            <span className="pt-1 text-xs tracking-[0.15em] text-muted-foreground uppercase tabular-nums">
+              {item.period}
+            </span>
+            <div className="border-l border-border pl-6 md:pl-8">
+              <h3 className="text-lg font-medium md:text-xl">{item.org}</h3>
+              <p className="mt-1 text-sm text-foreground/75">{item.role}</p>
+              <p className="mt-4 max-w-lg text-[0.95rem] leading-relaxed">
+                {item.description}
+              </p>
+            </div>
           </Reveal>
         ))}
       </ol>
@@ -168,8 +177,8 @@ export function Services() {
     <Section id="services" index="04" label="Services">
       <ul className="border-b border-border">
         {services.map((service, i) => (
-          <Reveal key={service.title} delay={i * 40}>
-            <li className="group grid gap-2 border-t border-border py-6 transition-transform duration-500 ease-out hover:translate-x-1.5 md:grid-cols-[1fr_1fr] md:items-baseline md:gap-8">
+          <Reveal as="li" key={service.title} delay={i * 40}>
+            <div className="group grid gap-2 border-t border-border py-6 transition-transform duration-500 ease-out hover:translate-x-1.5 md:grid-cols-[1fr_1fr] md:items-baseline md:gap-8">
               <h3 className="flex items-baseline gap-4 text-lg font-medium text-foreground/85 transition-colors duration-300 group-hover:text-foreground md:text-xl">
                 <span className="text-xs tabular-nums text-muted-foreground">
                   {pad(i + 1)}
@@ -179,7 +188,7 @@ export function Services() {
               <p className="pl-8 text-sm leading-relaxed text-muted-foreground/70 transition-colors duration-300 group-hover:text-muted-foreground md:pl-0">
                 {service.description}
               </p>
-            </li>
+            </div>
           </Reveal>
         ))}
       </ul>
@@ -192,22 +201,26 @@ export function TechStack() {
     <Section id="stack" index="05" label="Tech Stack">
       <dl className="border-b border-border">
         {techStack.map((row, i) => (
-          <Reveal key={row.category} delay={i * 40}>
-            <div className="grid gap-2 border-t border-border py-5 md:grid-cols-[10rem_1fr] md:gap-8">
-              <dt className="pt-0.5 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
-                {row.category}
-              </dt>
-              <dd className="flex flex-wrap gap-x-3 gap-y-1 text-[1.0625rem] text-foreground">
-                {row.items.map((item, j) => (
-                  <span key={item} className="flex items-center gap-3">
-                    {j > 0 && (
-                      <span className="text-muted-foreground/50">·</span>
-                    )}
-                    {item}
-                  </span>
-                ))}
-              </dd>
-            </div>
+          <Reveal
+            key={row.category}
+            delay={i * 40}
+            className="grid gap-2 border-t border-border py-5 md:grid-cols-[10rem_1fr] md:gap-8"
+          >
+            <dt className="pt-0.5 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+              {row.category}
+            </dt>
+            <dd className="flex flex-wrap gap-x-3 gap-y-1 text-[1.0625rem] text-foreground">
+              {row.items.map((item, j) => (
+                <span key={item} className="flex items-center gap-3">
+                  {j > 0 && (
+                    <span aria-hidden="true" className="text-muted-foreground/50">
+                      ·
+                    </span>
+                  )}
+                  {item}
+                </span>
+              ))}
+            </dd>
           </Reveal>
         ))}
       </dl>
@@ -249,12 +262,12 @@ export function Contact() {
   return (
     <Section id="contact" index="06" label="Contact" className="pb-16 md:pb-20">
       <Reveal>
-        <h2 className="text-[2.5rem] leading-[1.05] font-medium md:text-6xl lg:text-7xl">
+        <p className="font-heading text-[2.5rem] leading-[1.05] font-medium tracking-tight text-foreground md:text-6xl lg:text-7xl">
           <span className="block text-muted-foreground">
             Have a product idea?
           </span>
           <span className="block">Let&apos;s build it.</span>
-        </h2>
+        </p>
       </Reveal>
 
       <Reveal delay={100}>
