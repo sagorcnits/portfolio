@@ -67,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{".reveal{opacity:1;transform:none}"}</style>
         </noscript>
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-clip">{children}</body>
     </html>
   );
 }

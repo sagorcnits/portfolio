@@ -27,7 +27,7 @@ export default function NotFound() {
         href="/"
         className={cn(
           buttonVariants({ size: "lg" }),
-          "group/cta mt-12 h-12 w-fit gap-3 rounded-full px-7 text-[0.95rem]",
+          "group/cta mt-12 h-auto min-h-12 w-fit max-w-full gap-3 rounded-full px-7 py-3 text-[0.95rem] whitespace-normal",
         )}
       >
         Back to {profile.name}&apos;s portfolio
@@ -37,12 +37,12 @@ export default function NotFound() {
         />
       </Link>
       <nav aria-label="Portfolio sections" className="mt-16">
-        <ul className="flex flex-wrap gap-x-8 gap-y-3">
+        <ul className="flex flex-wrap gap-x-8">
           {navItems.map((item) => (
             <li key={item.id}>
               <Link
                 href={`/#${item.id}`}
-                className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase transition-colors duration-300 hover:text-foreground"
+                className="inline-flex min-h-11 items-center text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase transition-colors duration-300 hover:text-foreground"
               >
                 {item.label}
               </Link>

@@ -41,3 +41,32 @@ Rules:
 - Use only relative paths or paths inside the working directory in these scripts. Never read files outside the project (no ~, /etc, /tmp, or absolute paths outside the repo).
 - Delete the temp script when done, unless I ask to keep it.
 - For simple tasks, prefer built-in tools (Read, Grep, Glob) or plain shell commands (cat, grep, ls) over writing a script at all.
+
+Make the entire website fully responsive across all devices and screen sizes: mobile, tablet, laptop, desktop, and ultrawide (320px up to 1920px+).
+
+Goals:
+
+- No horizontal overflow, broken layouts, or overlapping content at any width.
+- Properly adjust spacing, typography, images, grids, buttons, navbar, sections, and components for smaller screens.
+- Keep the existing design, UI, colors, animations, and functionality exactly the same. Only change what is needed for responsiveness.
+
+Test at these widths and fix every issue you find: 320px, 375px, 425px, 768px, 1024px, 1280px, 1440px, 1920px, and 2560px.
+
+Checklist:
+
+- Navbar: collapses into a working mobile menu on small screens.
+- Images and media: scale with max-width: 100% and keep their aspect ratio.
+- Grids and flex layouts: stack or reduce columns on smaller screens.
+- Typography: scales smoothly (use clamp() where helpful) and stays readable.
+- Buttons and inputs: easy to tap on mobile (at least 44px tall).
+- Tables, code blocks, and wide elements: scroll inside their own container, never the whole page.
+- Ultrawide screens: content stays centered with a sensible max-width.
+
+Command rules (important):
+
+- Use only literal relative paths in shell commands, for example: ls src/components
+- Do not use shell variables, $(...), backticks, or computed paths in commands.
+- Prefer the built-in Read, Glob, Grep, and Edit tools over shell commands for exploring and editing files.
+- Stay inside the current project folder. Do not read files outside it.
+
+When finished, give me a short summary of the files you changed and the issues you fixed.

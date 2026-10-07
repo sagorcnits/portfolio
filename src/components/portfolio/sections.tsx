@@ -104,7 +104,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         {pad(index + 1)}
       </span>
       <div className="min-w-0">
-        <h3 className="text-xl font-medium text-foreground/85 transition-colors duration-300 group-hover:text-foreground md:text-2xl">
+        <h3 className="text-xl font-medium wrap-break-word text-foreground/85 transition-colors duration-300 group-hover:text-foreground md:text-2xl">
           {project.name}
         </h3>
         <p className="mt-2 text-[0.95rem] leading-relaxed">
@@ -153,7 +153,7 @@ export function Experience() {
             as="li"
             key={item.org + item.period}
             delay={i * 50}
-            className="grid gap-3 md:grid-cols-[10rem_1fr] md:gap-8"
+            className="grid gap-3 lg:grid-cols-[10rem_1fr] lg:gap-8"
           >
             <span className="pt-1 text-xs tracking-[0.15em] text-muted-foreground uppercase tabular-nums">
               {item.period}
@@ -178,14 +178,14 @@ export function Services() {
       <ul className="border-b border-border">
         {services.map((service, i) => (
           <Reveal as="li" key={service.title} delay={i * 40}>
-            <div className="group grid gap-2 border-t border-border py-6 transition-transform duration-500 ease-out hover:translate-x-1.5 md:grid-cols-[1fr_1fr] md:items-baseline md:gap-8">
+            <div className="group grid gap-2 border-t border-border py-6 transition-transform duration-500 ease-out hover:translate-x-1.5 xl:grid-cols-[1fr_1fr] xl:items-baseline xl:gap-8">
               <h3 className="flex items-baseline gap-4 text-lg font-medium text-foreground/85 transition-colors duration-300 group-hover:text-foreground md:text-xl">
                 <span className="text-xs tabular-nums text-muted-foreground">
                   {pad(i + 1)}
                 </span>
                 {service.title}
               </h3>
-              <p className="pl-8 text-sm leading-relaxed text-muted-foreground/70 transition-colors duration-300 group-hover:text-muted-foreground md:pl-0">
+              <p className="pl-8 text-sm leading-relaxed text-muted-foreground/70 transition-colors duration-300 group-hover:text-muted-foreground xl:pl-0">
                 {service.description}
               </p>
             </div>
@@ -204,7 +204,7 @@ export function TechStack() {
           <Reveal
             key={row.category}
             delay={i * 40}
-            className="grid gap-2 border-t border-border py-5 md:grid-cols-[10rem_1fr] md:gap-8"
+            className="grid gap-2 border-t border-border py-5 lg:grid-cols-[10rem_1fr] lg:gap-8"
           >
             <dt className="pt-0.5 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
               {row.category}
@@ -232,7 +232,7 @@ export function Philosophy() {
   return (
     <section aria-label="Philosophy" className="py-24 md:py-32 lg:py-40">
       <Reveal>
-        <blockquote className="text-[2.25rem] leading-[1.1] font-medium tracking-tight md:text-5xl lg:text-6xl">
+        <blockquote className="text-[clamp(1.875rem,9vw,2.25rem)] leading-[1.1] font-medium tracking-tight md:text-5xl lg:text-6xl">
           <p className="text-muted-foreground">{philosophy[0]}</p>
           <p className="mt-2 text-foreground md:ml-[14%]">{philosophy[1]}</p>
         </blockquote>
@@ -260,9 +260,9 @@ const contactLinks = [
 
 export function Contact() {
   return (
-    <Section id="contact" index="06" label="Contact" className="pb-16 md:pb-20">
+    <Section id="contact" index="06" label="Contact" className="pb-28 md:pb-20">
       <Reveal>
-        <p className="font-heading text-[2.5rem] leading-[1.05] font-medium tracking-tight text-foreground md:text-6xl lg:text-7xl">
+        <p className="font-heading text-[clamp(2rem,10vw,2.5rem)] leading-[1.05] font-medium tracking-tight text-foreground md:text-6xl lg:text-7xl">
           <span className="block text-muted-foreground">
             Have a product idea?
           </span>
@@ -296,11 +296,11 @@ export function Contact() {
                 rel="noopener noreferrer"
                 className="group flex items-center justify-between gap-6 border-t border-border py-5"
               >
-                <span className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
+                <span className="shrink-0 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                   {link.label}
                 </span>
-                <span className="flex items-center gap-3 truncate text-foreground/85 transition-colors duration-300 group-hover:text-foreground">
-                  {link.value}
+                <span className="flex min-w-0 items-center gap-3 text-foreground/85 transition-colors duration-300 group-hover:text-foreground">
+                  <span className="truncate">{link.value}</span>
                   <ArrowUpRight
                     aria-hidden="true"
                     strokeWidth={1.5}
