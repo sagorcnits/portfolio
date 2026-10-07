@@ -2,7 +2,7 @@
 
 export const profile = {
   name: "Sagor Hossain",
-  roles: ["Co-Founder @ Octarnal."],
+  roles: ["Co-Founder & COO @"],
   statement:
     "I help businesses turn ideas into scalable SaaS products, AI-powered automation, and custom web platforms—built to solve real problems and drive growth.",
   location: "Bangladesh · Working worldwide",

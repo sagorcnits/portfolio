@@ -19,7 +19,17 @@ function Intro() {
       </h1>
       <ul className="mt-5 space-y-1 text-[0.95rem] text-foreground/80">
         {profile.roles.map((role) => (
-          <li key={role}>{role}</li>
+          <li key={role}>
+            {role}{" "}
+            <a
+              href="https://www.octarnal.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground/85 transition-colors duration-300 hover:text-foreground"
+            >
+              Octarnal.
+            </a>
+          </li>
         ))}
       </ul>
       <p className="mt-8 max-w-xs text-[0.95rem] leading-relaxed">

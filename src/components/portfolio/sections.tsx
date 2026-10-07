@@ -316,11 +316,21 @@ export function Contact() {
         </ul>
       </Reveal>
 
-      <footer className="mt-24 flex flex-col gap-2 text-xs text-muted-foreground md:flex-row md:justify-end">
+      <footer className="mt-24 flex flex-col gap-2 text-xs text-muted-foreground md:flex-row md:justify-between">
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
-        {/* <span>Designed &amp; built with Next.js</span> */}
+        <span>
+          Visit -{" "}
+          <a
+            href="https://www.octarnal.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground/85 transition-colors duration-300 hover:text-foreground"
+          >
+            Octarnal
+          </a>{" "}
+        </span>
       </footer>
     </Section>
   );
