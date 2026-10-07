@@ -8,6 +8,7 @@ import {
   TechStack,
   Work,
 } from "@/components/portfolio/sections";
+import { WhatsAppButton } from "@/components/portfolio/whatsapp-button";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <Philosophy />
         <Contact />
       </main>
+      <WhatsAppButton />
     </div>
   );
 }

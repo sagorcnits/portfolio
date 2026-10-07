@@ -1,344 +1,88 @@
-# Portfolio Website — Design Brief
+Add a floating WhatsApp contact button to the right side of the portfolio website.
 
-Design and build a premium, minimal, editorial-style personal portfolio website inspired by the provided reference image.
+### Position
 
-> **IMPORTANT**
-> Use the reference image only as inspiration for the overall composition, spacing, typography hierarchy, and split-layout concept. Do **NOT** copy the exact design, content, icons, or visual details. Create a unique portfolio identity.
+- Place the WhatsApp button on the right side of the viewport.
+- Keep it vertically centered or slightly below the center.
+- It should remain fixed while the user scrolls.
+- Make sure it does not interfere with the existing right sidebar/navigation.
+- On desktop, position it slightly outside or beside the main content/sidebar area so it feels naturally integrated with the editorial layout.
 
----
+### Design
 
-## Brand System
+Keep the design minimal and premium to match the existing portfolio branding.
 
-**Primary Font:** Instrument Sans
+Brand system:
 
-**Brand Colors:**
+- Background: #121212
+- Primary text: #FAFAFA
+- Secondary text: #9D9D9D
+- Font: Instrument Sans
 
-| Role                       | Color     |
-| -------------------------- | --------- |
-| Background                 | `#121212` |
-| Primary Heading/Text       | `#FAFAFA` |
-| Secondary/Description Text | `#9D9D9D` |
+For the WhatsApp button:
 
-Keep the entire website within this monochrome dark color system.
+- Use a simple WhatsApp icon.
+- Keep the button compact rather than creating a large floating widget.
+- Use a subtle circular or rounded-square container.
+- Add a thin subtle border.
+- Avoid excessive shadows or bright UI treatments.
+- The icon can use the standard WhatsApp green only if necessary for recognition; otherwise keep it monochrome to match the portfolio.
 
-**Avoid:**
+### Interaction
 
-- Random accent colors
-- Excessive gradients
-- Colorful UI elements
-- Heavy glassmorphism
-- Excessive shadows
-- Generic template-style cards
+The entire button should be clickable.
 
-The design should feel: **minimal + premium + technical + editorial + sophisticated.**
+When clicked, open my WhatsApp chat in a new tab using:
 
----
+https://wa.me/8801852024152
 
-## Overall Layout
-
-Create a desktop-first portfolio with a strong two-column editorial composition.
-
-- **Left column:** A relatively fixed/sticky profile/navigation area.
-- **Right column:** Scrollable main content area.
-
-The left side should introduce me immediately, while the right side tells my story, showcases my work, and explains what I build.
-
-Use generous whitespace and precise alignment.
-
-The layout should feel similar to a high-end designer/developer portfolio rather than a traditional SaaS landing page.
-
----
-
-## Left Sidebar
-
-At the top: **[YOUR NAME]**
+Replace `YOUR_PHONE_NUMBER` with my actual WhatsApp number in international format without `+`, spaces, or dashes.
 
 Example:
 
-```
-Sagor Hossain
-```
+https://wa.me/8801852024152
 
-Below the name:
+Use:
 
-```
-Full-Stack Developer
-AI & SaaS Builder
-Future Tech Entrepreneur
-```
+target="\_blank"
+rel="noopener noreferrer"
 
-Keep this typography clean and understated.
+### Hover Effect
 
-Add a short personal statement such as:
+On hover:
 
-> "I build modern web applications, AI-powered products, and automation systems for ambitious businesses."
+- Slightly increase the button size or scale
+- Brighten the icon
+- Show a small tooltip/text such as:
 
-Below that, create minimal navigation:
+"Let's Talk on WhatsApp"
 
-```
-ABOUT
-WORK
-EXPERIENCE
-SERVICES
-CONTACT
-```
+The tooltip should appear toward the right side of the button so it does not go outside the viewport.
 
-Use small uppercase typography with generous letter spacing.
+Keep the animation subtle and smooth.
 
-The active navigation item should have a subtle visual indicator, such as:
+### Mobile
 
-- Small horizontal line
-- Slightly brighter text
-- Minimal underline
+On mobile:
 
-Do not use large colorful navigation elements.
+- Keep the WhatsApp button fixed.
+- Position it at the bottom-right corner instead of the right side.
+- Make sure it does not overlap important content or the mobile navigation.
+- Keep it compact and easily accessible.
 
-At the bottom of the sidebar, add minimal social links:
+### Accessibility
 
-- GitHub
-- LinkedIn
-- X
-- Email
+- Add an accessible aria-label:
 
-Use simple monochrome icons.
+"Contact me on WhatsApp"
 
----
+- The button must be keyboard accessible.
+- Use a proper `<a>` element instead of a clickable `<div>`.
 
-## Right Content
+### Important
 
-### 01 — About
+Do not modify the existing portfolio layout, typography, spacing, colors, navigation, or content.
 
-Start with a strong introduction.
+Only add the WhatsApp contact button and its interactions.
 
-Example:
-
-> "Hi, I'm Sagor — a full-stack developer and product builder focused on creating modern SaaS products, AI-powered platforms, and automation systems."
-
-Use a larger paragraph style for the main introduction.
-
-Then add supporting paragraphs explaining:
-
-- What I build
-- How I approach products
-- My interest in AI and automation
-- Working with startups and businesses
-- Turning ideas into production-ready software
-
-Keep the text readable and use `#9D9D9D` for supporting content.
-
----
-
-## Selected Work
-
-Create a visually interesting project section.
-
-Instead of traditional large cards, use an editorial project list.
-
-Each project should have:
-
-- Number (e.g. `01`)
-- Project Name
-- Short description
-- Technology stack
-- Year
-
-Example:
-
-```
-01
-FindProfessional
-Professional discovery and directory platform.
-
-NestJS · MongoDB · React · Cloudinary
-
-2026
-```
-
-Add a subtle arrow or interaction indicator.
-
-**On hover:**
-
-- Project row slightly shifts
-- Title becomes brighter
-- Subtle border/line animation
-- Optional project preview image appears
-
-Keep the interaction sophisticated and minimal.
-
----
-
-## Experience
-
-Create a clean chronological experience section.
-
-Example:
-
-```
-2023 — Present
-Octarnal
-Co-Founder & COO
-
-Building AI-powered SaaS products, automation systems, and custom software solutions.
-```
-
-Use a timeline-like editorial layout but keep it extremely minimal.
-
----
-
-## Services
-
-Create a minimal list rather than traditional service cards.
-
-```
-01 — Full-Stack Development
-02 — SaaS Product Development
-03 — AI Integration
-04 — Business Automation
-05 — API & Backend Architecture
-06 — Technical Product Development
-```
-
-Each item should have a short description revealed or emphasized on hover.
-
----
-
-## Tech Stack
-
-Show technologies in a clean typographic grid/list.
-
-| Category       | Technologies                     |
-| -------------- | -------------------------------- |
-| Frontend       | React · Next.js · TypeScript     |
-| Backend        | Node.js · NestJS · GraphQL       |
-| Database       | PostgreSQL · Prisma · MongoDB    |
-| Infrastructure | Docker · Linux · Cloud           |
-| AI             | AI APIs · AI Agents · Automation |
-
-Do not use colorful technology badges.
-
-Use typography and subtle separators instead.
-
----
-
-## Personal Philosophy
-
-Create one visually strong statement section.
-
-Example:
-
-> "I don't just build software.
-> I build products that solve real problems."
-
-Make this section visually distinctive through typography, spacing, and layout rather than colors.
-
----
-
-## Contact
-
-End with a minimal but memorable contact section.
-
-**Heading:**
-
-```
-Have a product idea?
-
-Let's build it.
-```
-
-**Add:**
-
-- Email
-- LinkedIn
-- GitHub
-
-**Primary CTA:**
-
-```
-Let's Work Together →
-```
-
-The CTA should remain monochrome and elegant.
-
----
-
-## Visual Details
-
-**Use:**
-
-- Large typography
-- Small uppercase labels
-- Generous whitespace
-- Thin subtle borders
-- Editorial alignment
-- Asymmetric spacing
-- Strong typographic hierarchy
-- Minimal animations
-- Smooth scrolling
-- Subtle hover interactions
-
-**Color usage:**
-
-- Use `#FAFAFA` for important typography.
-- Use `#9D9D9D` for secondary information.
-- Use `#121212` as the dominant background.
-- For subtle borders/dividers, use low-opacity versions of white/gray.
-
----
-
-## Responsive Design
-
-- **Desktop:** Use the two-column editorial layout.
-- **Tablet:** Reduce sidebar width and spacing while preserving the composition.
-- **Mobile:** Convert the sidebar into a compact top navigation.
-
-Do **NOT** simply stack everything into generic cards.
-
-Preserve the editorial feeling on mobile through:
-
-- Typography
-- Spacing
-- Section numbering
-- Horizontal separators
-- Compact navigation
-
----
-
-## Animation
-
-Keep animations subtle and premium.
-
-**Use:**
-
-- Fade-in
-- Slight translate
-- Smooth hover transitions
-- Project row hover movement
-- Subtle navigation indicator animation
-
-**Avoid:**
-
-- Excessive parallax
-- Flashy animations
-- Bouncing elements
-- Excessive motion
-
----
-
-## Design Goal
-
-The final result should feel like a portfolio created by a highly skilled product designer + senior developer.
-
-It should communicate:
-
-> **"Technical, intelligent, minimal, premium, and trustworthy."**
-
-It should **NOT** look like a generic portfolio template.
-
-Use the provided reference image as a structural inspiration only, while creating a completely original visual identity around my brand:
-
-- **Font:** Instrument Sans
-- **Background:** `#121212`
-- **Primary:** `#FAFAFA`
-- **Secondary:** `#9D9D9D`
-
-Prioritize typography, whitespace, hierarchy, and content presentation over decorative UI.
+The final result should feel like a natural part of the premium editorial portfolio rather than a generic floating chat widget.

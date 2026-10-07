@@ -13,6 +13,7 @@ export const socials = {
   github: "https://github.com/sagorcnits",
   linkedin: "https://www.linkedin.com/in/sagor-hossain-web-dev",
   x: "https://x.com/sagor4917",
+  whatsapp: "https://wa.me/8801852024152",
   facebook: "https://www.facebook.com/sagor.hossain.407337/",
   instagram: "https://www.instagram.com/sagor_hossain_web/",
   email: `mailto:${profile.email}`,
@@ -82,7 +83,7 @@ export const projects: Project[] = [
 // TODO: verify roles, organisations and dates.
 export const experience = [
   {
-    period: "2023 — Present",
+    period: "2024 — Present",
     org: "Octarnal",
     role: "Co-Founder & COO",
     description:
@@ -93,7 +94,7 @@ export const experience = [
     org: "Web Makers Inc.",
     role: "Senior Frontend Engineer",
     description:
-      "Built production-grade web applications for international clients",
+      "Built and delivered production-grade web applications for international clients, focusing on scalability, performance, and exceptional user experiences.",
   },
   {
     period: "2023 — 2024",
