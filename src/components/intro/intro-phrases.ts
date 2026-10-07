@@ -2,16 +2,16 @@ export type Line = { word: string; muted?: boolean };
 
 // To add/remove a phrase, edit this array; index 0 is the first-visit signature phrase.
 export const INTRO_PHRASES: Line[][] = [
-  [{ word: "Ideas" },       { word: "Into", muted: true },     { word: "Products" }],
-  [{ word: "Ship" },        { word: "Faster", muted: true },   { word: "Scale" }],
-  [{ word: "Intelligent" }, { word: "Software", muted: true }, { word: "Systems" }],
-  [{ word: "Crafted" },     { word: "For", muted: true },      { word: "Growth" }],
-  [{ word: "Products" },    { word: "That", muted: true },     { word: "Perform" }],
-  [{ word: "Automate" },    { word: "The", muted: true },      { word: "Complex" }],
-  [{ word: "Code" },        { word: "With", muted: true },     { word: "Purpose" }],
-  [{ word: "Built" },       { word: "To", muted: true },       { word: "Last" }],
-  [{ word: "Vision" },      { word: "Into", muted: true },     { word: "Reality" }],
-  [{ word: "Engineered" },  { word: "For", muted: true },      { word: "Impact" }],
+  [{ word: "Ideas" }, { word: "Into", muted: true }, { word: "Products" }],
+  [{ word: "Products" }, { word: "People", muted: true }, { word: "Love" }],
+  [{ word: "Software" }, { word: "That", muted: true }, { word: "Sells" }],
+  [{ word: "Launch" }, { word: "With", muted: true }, { word: "Confidence" }],
+  [{ word: "Automate" }, { word: "Your", muted: true }, { word: "Growth" }],
+  [{ word: "AI" }, { word: "That", muted: true }, { word: "Works" }],
+  [{ word: "Engineered" }, { word: "To", muted: true }, { word: "Perform" }],
+  [{ word: "Built" }, { word: "For", muted: true }, { word: "Revenue" }],
+  [{ word: "Results" }, { word: "Over", muted: true }, { word: "Hype" }],
+  [{ word: "Scale" }, { word: "Without", muted: true }, { word: "Limits" }],
 ];
 
 export const INTRO_PHRASE_KEY = "intro-phrase-queue";
