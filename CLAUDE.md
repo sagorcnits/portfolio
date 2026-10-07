@@ -27,3 +27,17 @@ No test framework is configured.
 ## Portfolio structure
 
 Single-page portfolio (design brief: `promt.md`). All copy lives in `src/content/site.ts`; components in `src/components/portfolio/` only render it. `sidebar.tsx` is the sticky left column on `md+` and a compact sticky top bar below `md`; it scroll-spies sections listed in `navItems`. `sections.tsx` holds every right-column section; `<Reveal>` + the `.reveal` CSS in `globals.css` handle fade-ins (disabled under `prefers-reduced-motion`).
+
+## Running code: no inline scripts
+
+This project uses permissions.blockReadsOutsideWorkingDirectories, so inline code cannot be checked and triggers a permission prompt.
+
+Rules:
+
+- NEVER use `python -c`, `python3 -c`, `node -e`, `node -p`, `node --eval`, or heredocs piped into python/node (e.g. `python - <<EOF`).
+- Instead, write the code to a file inside the project, in `.claude/tmp/` (create it if missing), then run it:
+  python .claude/tmp/check.py
+  node .claude/tmp/check.js
+- Use only relative paths or paths inside the working directory in these scripts. Never read files outside the project (no ~, /etc, /tmp, or absolute paths outside the repo).
+- Delete the temp script when done, unless I ask to keep it.
+- For simple tasks, prefer built-in tools (Read, Grep, Glob) or plain shell commands (cat, grep, ls) over writing a script at all.

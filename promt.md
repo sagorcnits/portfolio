@@ -1,88 +1,51 @@
-Add a floating WhatsApp contact button to the right side of the portfolio website.
+Add a minimal premium splash screen that appears briefly whenever the portfolio page initially loads or reloads.
 
-### Position
+Use the existing “S” personal brand logo as the central visual element.
 
-- Place the WhatsApp button on the right side of the viewport.
-- Keep it vertically centered or slightly below the center.
-- It should remain fixed while the user scrolls.
-- Make sure it does not interfere with the existing right sidebar/navigation.
-- On desktop, position it slightly outside or beside the main content/sidebar area so it feels naturally integrated with the editorial layout.
+Design:
 
-### Design
+- Full-screen background: #121212
+- Large centered S logo
+- Use the exact existing S logo design without redesigning it
+- No additional illustrations
+- No loading spinner
+- No progress bar
+- No unnecessary text
 
-Keep the design minimal and premium to match the existing portfolio branding.
+Animation:
 
-Brand system:
+1. Start with a completely dark #121212 screen.
+2. Fade and slightly scale the S logo from 96% to 100%.
+3. Add an extremely subtle radial glow behind the S.
+4. Keep the logo stable for a brief moment.
+5. Fade the entire splash screen out smoothly.
+6. Reveal the main portfolio underneath with a subtle opacity transition.
 
-- Background: #121212
-- Primary text: #FAFAFA
-- Secondary text: #9D9D9D
-- Font: Instrument Sans
+Duration:
 
-For the WhatsApp button:
+- Total splash: approximately 700–1000ms
+- Keep the animation fast and elegant.
 
-- Use a simple WhatsApp icon.
-- Keep the button compact rather than creating a large floating widget.
-- Use a subtle circular or rounded-square container.
-- Add a thin subtle border.
-- Avoid excessive shadows or bright UI treatments.
-- The icon can use the standard WhatsApp green only if necessary for recognition; otherwise keep it monochrome to match the portfolio.
+Style:
+Minimal
+Premium
+Editorial
+Sophisticated
+Technical
+Modern
+Quiet luxury
 
-### Interaction
+The splash should feel like a high-end personal brand intro, not a generic website loader.
 
-The entire button should be clickable.
+Do not use:
 
-When clicked, open my WhatsApp chat in a new tab using:
+- Spinners
+- Progress bars
+- Neon effects
+- Strong glow
+- Glassmorphism
+- Excessive motion
+- Large text
+- Gradient-heavy effects
 
-https://wa.me/8801852024152
-
-Replace `YOUR_PHONE_NUMBER` with my actual WhatsApp number in international format without `+`, spaces, or dashes.
-
-Example:
-
-https://wa.me/8801852024152
-
-Use:
-
-target="\_blank"
-rel="noopener noreferrer"
-
-### Hover Effect
-
-On hover:
-
-- Slightly increase the button size or scale
-- Brighten the icon
-- Show a small tooltip/text such as:
-
-"Let's Talk on WhatsApp"
-
-The tooltip should appear toward the right side of the button so it does not go outside the viewport.
-
-Keep the animation subtle and smooth.
-
-### Mobile
-
-On mobile:
-
-- Keep the WhatsApp button fixed.
-- Position it at the bottom-right corner instead of the right side.
-- Make sure it does not overlap important content or the mobile navigation.
-- Keep it compact and easily accessible.
-
-### Accessibility
-
-- Add an accessible aria-label:
-
-"Contact me on WhatsApp"
-
-- The button must be keyboard accessible.
-- Use a proper `<a>` element instead of a clickable `<div>`.
-
-### Important
-
-Do not modify the existing portfolio layout, typography, spacing, colors, navigation, or content.
-
-Only add the WhatsApp contact button and its interactions.
-
-The final result should feel like a natural part of the premium editorial portfolio rather than a generic floating chat widget.
+Preserve the existing portfolio layout, typography, spacing, colors, navigation, and content. The splash screen should only enhance the initial loading experience and should not change the existing UI.
