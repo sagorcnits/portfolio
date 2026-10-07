@@ -213,7 +213,10 @@ export function TechStack() {
               {row.items.map((item, j) => (
                 <span key={item} className="flex items-center gap-3">
                   {j > 0 && (
-                    <span aria-hidden="true" className="text-muted-foreground/50">
+                    <span
+                      aria-hidden="true"
+                      className="text-muted-foreground/50"
+                    >
                       ·
                     </span>
                   )}
@@ -313,11 +316,11 @@ export function Contact() {
         </ul>
       </Reveal>
 
-      <footer className="mt-24 flex flex-col gap-2 text-xs text-muted-foreground md:flex-row md:justify-between">
+      <footer className="mt-24 flex flex-col gap-2 text-xs text-muted-foreground md:flex-row md:justify-end">
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
-        <span>Designed &amp; built with Next.js</span>
+        {/* <span>Designed &amp; built with Next.js</span> */}
       </footer>
     </Section>
   );
