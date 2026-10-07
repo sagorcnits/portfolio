@@ -8,7 +8,6 @@ import {
   TechStack,
   Work,
 } from "@/components/portfolio/sections";
-import { Splash } from "@/components/portfolio/splash";
 import { WhatsAppButton } from "@/components/portfolio/whatsapp-button";
 import { jsonLd } from "@/lib/seo";
 
@@ -21,10 +20,9 @@ export default function Home() {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Splash />
       <div
         id="top"
-        className="splash-reveal mx-auto w-full max-w-7xl px-6 md:flex md:gap-12 md:px-10 lg:gap-20 lg:px-16"
+        className="mx-auto w-full max-w-7xl px-6 md:flex md:gap-12 md:px-10 lg:gap-20 lg:px-16"
       >
         <Sidebar />
         <main className="min-w-0 flex-1 md:py-4">

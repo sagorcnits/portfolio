@@ -44,8 +44,7 @@ export function Reveal({
       ref={ref}
       data-visible={visible || undefined}
       data-eager={eager || undefined}
-      // Eager fades start as the splash (globals.css, 700ms) lifts.
-      style={eager ? { animationDelay: `${600 + delay}ms` } : { transitionDelay: `${delay}ms` }}
+      style={eager ? { animationDelay: `${delay}ms` } : { transitionDelay: `${delay}ms` }}
       className={cn("reveal", className)}
     >
       {children}

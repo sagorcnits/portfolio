@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans } from "next/font/google";
 
+import { IntroSequence } from "@/components/intro/intro-sequence";
 import { profile } from "@/content/site";
 import { seo, siteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -67,7 +68,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{".reveal{opacity:1;transform:none}"}</style>
         </noscript>
       </head>
-      <body className="min-h-full flex flex-col overflow-x-clip">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-clip">
+        <IntroSequence />
+        {children}
+      </body>
     </html>
   );
 }

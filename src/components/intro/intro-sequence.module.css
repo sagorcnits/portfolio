@@ -1,0 +1,338 @@
+/*
+ * "System initialization" intro (~2.25s). Self-contained: delete the component and
+ * its mount line and the site is untouched.
+ *
+ *   0–860      grid lines draw in (staggered 30ms), corner marks fade in
+ *   150–730    metadata labels rise in (staggered 60ms)
+ *   250–1230   headline lines slide up through their masks (staggered 140ms)
+ *   1150–1850  1px line sweeps left → right; the panel's clip-path tracks its tip
+ *   1150–1660  headline exits upward, grid/corners/metadata fade out
+ *   1600–2250  page underneath eases in; line fades; overlay unmounts at 2250
+ *
+ * Every animation starts paused and is released by the inline script in
+ * intro-sequence.tsx once the font is ready (max 300ms), so the headline never
+ * flashes in a fallback face.
+ */
+
+.intro {
+  --intro-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --intro-sweep-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --intro-rule: color-mix(in srgb, var(--foreground) 6%, transparent);
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  overflow: hidden;
+  /* Fallback end state if JS never unmounts it. */
+  animation: intro-hide 1ms linear 2250ms both;
+}
+
+/* Lock scroll while the intro is mounted. The stable gutter keeps the scrollbar's
+   space reserved, so restoring overflow causes no layout shift. */
+:global(html):has(.intro) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--background);
+  color: var(--foreground);
+  animation: intro-wipe 700ms var(--intro-sweep-ease) 1150ms both;
+}
+
+/* Grid aligned to the page's content box: max-w-7xl + px-6 / md:px-10 / lg:px-16. */
+.grid {
+  position: absolute;
+  inset: 0;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+.cols {
+  position: relative;
+  height: 100%;
+}
+.vline,
+.hline {
+  position: absolute;
+  background: var(--intro-rule);
+}
+.vline {
+  top: 0;
+  bottom: 0;
+  left: calc(var(--i) * (100% - 1px) / 12);
+  width: 1px;
+  transform: scaleY(0);
+  transform-origin: top;
+  animation:
+    intro-draw 500ms var(--intro-ease) calc(var(--i) * 30ms) both,
+    intro-out 400ms var(--intro-ease) 1150ms forwards;
+}
+.hline {
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation:
+    intro-draw 500ms var(--intro-ease) calc(60ms + var(--i) * 30ms) both,
+    intro-out 400ms var(--intro-ease) 1150ms forwards;
+}
+.hline[data-pos="top"] {
+  top: 4.5rem;
+}
+.hline[data-pos="bottom"] {
+  bottom: 4.5rem;
+}
+
+/* 8px registration marks near the viewport corners. */
+.corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background:
+    linear-gradient(var(--muted-foreground), var(--muted-foreground)) center / 1px 100% no-repeat,
+    linear-gradient(var(--muted-foreground), var(--muted-foreground)) center / 100% 1px no-repeat;
+  animation:
+    intro-fade-in 500ms var(--intro-ease) both,
+    intro-out 400ms var(--intro-ease) 1150ms forwards;
+}
+.corner[data-pos="tl"] {
+  top: 12px;
+  left: 12px;
+}
+.corner[data-pos="tr"] {
+  top: 12px;
+  right: 12px;
+}
+.corner[data-pos="bl"] {
+  bottom: 12px;
+  left: 12px;
+}
+.corner[data-pos="br"] {
+  right: 12px;
+  bottom: 12px;
+}
+
+.meta {
+  position: absolute;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+  animation:
+    intro-meta-in 400ms var(--intro-ease) calc(150ms + var(--i) * 60ms) both,
+    intro-out 400ms var(--intro-ease) 1150ms forwards;
+}
+.meta[data-pos="tl"],
+.meta[data-pos="tr"] {
+  top: 2.5rem;
+}
+.meta[data-pos="bl"],
+.meta[data-pos="br"] {
+  bottom: 2.5rem;
+}
+.meta[data-pos="tl"],
+.meta[data-pos="bl"] {
+  left: 0;
+}
+.meta[data-pos="tr"],
+.meta[data-pos="br"] {
+  right: 0;
+}
+
+.headline {
+  position: relative;
+  margin: 0;
+  font-size: clamp(2.25rem, 11vw, 9rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+/* Hidden until the inline phrase picker shows exactly one set. */
+.phrase {
+  display: none;
+}
+.line {
+  display: block;
+  overflow: hidden;
+}
+.word {
+  display: block;
+  transform: translateY(105%);
+  animation:
+    intro-word-in 700ms var(--intro-ease) calc(250ms + var(--i) * 140ms) both,
+    intro-word-out 350ms cubic-bezier(0.7, 0, 0.84, 0) calc(1150ms + var(--i) * 80ms) forwards;
+}
+.muted {
+  color: var(--muted-foreground);
+}
+
+/* Lives outside .panel, so the panel's clip doesn't hide it: its tip is the wipe edge. */
+.sweep {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--foreground);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation:
+    intro-sweep 700ms var(--intro-sweep-ease) 1150ms both,
+    intro-out 400ms var(--intro-ease) 1850ms forwards;
+}
+
+/* Page underneath eases in as the wipe finishes. Only header/main: a transform on
+   #top itself would re-anchor its fixed children (WhatsApp button). */
+:global(html):has(.intro) :global(#top) > :global(header),
+:global(html):has(.intro) :global(#top) > :global(main) {
+  animation: intro-page 600ms var(--intro-ease) 1600ms both;
+}
+
+/* Skip (click / scroll / key): drop everything and fade the overlay out fast. */
+.intro[data-skip] {
+  animation: intro-skip 200ms ease-out both;
+}
+:global(html):has(.intro[data-skip]) :global(#top) > :global(header),
+:global(html):has(.intro[data-skip]) :global(#top) > :global(main) {
+  animation: none;
+}
+
+/* Hold every animation until the font is ready (released by the inline script). */
+.intro.intro,
+.intro.intro *,
+:global(html):has(.intro) :global(#top) > :global(header),
+:global(html):has(.intro) :global(#top) > :global(main) {
+  animation-play-state: paused;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    padding-inline: 2.5rem;
+  }
+  .meta {
+    font-size: 0.75rem;
+  }
+}
+@media (min-width: 64rem) {
+  .grid {
+    padding-inline: 4rem;
+  }
+}
+/* Mobile: 4 columns (every third line of the 12). */
+@media (max-width: 47.99rem) {
+  .vline[data-minor] {
+    display: none;
+  }
+}
+/* Narrowest phones: the long bottom-right label would collide. */
+@media (max-width: 359px) {
+  .meta[data-pos="br"] {
+    display: none;
+  }
+}
+
+@keyframes intro-draw {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes intro-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes intro-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes intro-meta-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes intro-word-in {
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes intro-word-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-105%);
+  }
+}
+@keyframes intro-sweep {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes intro-wipe {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+@keyframes intro-page {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes intro-skip {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes intro-hide {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Reduced motion: static headline for 300ms, then a 250ms fade. No draw, slide or sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    animation: intro-hide 1ms linear 550ms both;
+  }
+  .panel {
+    animation: intro-skip 250ms ease-out 300ms both;
+  }
+  .panel *,
+  .sweep {
+    animation: none;
+  }
+  .vline,
+  .hline,
+  .word {
+    transform: none;
+  }
+  .sweep {
+    display: none;
+  }
+  :global(html):has(.intro) :global(#top) > :global(header),
+  :global(html):has(.intro) :global(#top) > :global(main) {
+    animation: none;
+  }
+}
