@@ -1,30 +1,32 @@
-import { experience, profile, socials, techStack } from "@/content/site";
+import {
+  experience,
+  profile,
+  projects,
+  socials,
+  techStack,
+} from "@/content/site";
 
 // Production origin for canonical URLs, sitemap, robots, Open Graph and JSON-LD.
-// Set NEXT_PUBLIC_SITE_URL (e.g. https://sagorhossain.dev) in the deployment environment.
-export const siteUrl = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://example.com"),
-);
+// Fixed on purpose: previews and local dev must never leak into SEO metadata.
+export const siteUrl = new URL("https://sagorhossain.site");
 
 export const seo = {
-  title: "Sagor Hossain — Full-Stack Developer & AI Product Builder",
+  title: "Sagor Hossain — Full-Stack Developer & SaaS Builder",
   shortTitle: "Sagor Hossain",
+  tagline: "Full-Stack Developer & SaaS Builder",
   description:
-    "Full-stack TypeScript developer and Co-Founder of Octarnal. I build SaaS products, AI-powered applications, automation and APIs with React, Next.js and Node.js.",
+    "Full-stack developer and Co-Founder of Octarnal. I build scalable SaaS products, AI-powered applications, automation systems and web platforms with React, Next.js and Node.js.",
   keywords: [
     "Sagor Hossain",
-    "Full Stack Developer",
-    "MERN Stack Developer",
+    "Full-Stack Developer",
+    "SaaS Developer",
+    "AI-powered applications",
+    "Automation systems",
     "TypeScript Developer",
     "React Developer",
     "Next.js Developer",
     "Node.js Developer",
-    "SaaS Development",
-    "AI-powered applications",
-    "API development",
+    "Octarnal",
   ],
 };
 
@@ -49,6 +51,7 @@ export const jsonLd = {
       worksFor: {
         "@type": "Organization",
         name: current.org,
+        url: "https://www.octarnal.com/",
       },
       hasOccupation: {
         "@type": "Occupation",
@@ -70,6 +73,7 @@ export const jsonLd = {
       name: profile.name,
       description: seo.description,
       inLanguage: "en",
+      author: { "@id": personId },
       publisher: { "@id": personId },
     },
     {
@@ -82,6 +86,25 @@ export const jsonLd = {
       isPartOf: { "@id": websiteId },
       about: { "@id": personId },
       mainEntity: { "@id": personId },
+      hasPart: { "@id": absolute("/#work") },
+    },
+    {
+      "@type": "ItemList",
+      "@id": absolute("/#work"),
+      name: "Selected Work",
+      itemListElement: projects.map((project, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: project.name,
+          description: project.description,
+          ...(project.liveUrl && { url: project.liveUrl }),
+          dateCreated: project.year,
+          keywords: project.stack.join(", "),
+          creator: { "@id": personId },
+        },
+      })),
     },
   ],
 };

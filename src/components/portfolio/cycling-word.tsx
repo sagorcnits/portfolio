@@ -65,10 +65,14 @@ export function CyclingWord({
   return (
     <span className={cn("inline-grid", className)}>
       {words.map((word, i) => (
+        // Only the first word is real text, so crawlers and screen readers get one
+        // stable value; the alternates are painted via CSS pseudo-content.
         <span
           key={word}
-          aria-hidden={i !== index}
+          aria-hidden={i === 0 ? undefined : true}
+          data-word={i === 0 ? undefined : word}
           className={cn(
+            i > 0 && "before:content-[attr(data-word)]",
             "[grid-area:1/1] will-change-[opacity,transform,filter] motion-reduce:transition-none",
             i === index
               ? // Enter: rise from below, slightly after the exit starts.
@@ -80,7 +84,7 @@ export function CyclingWord({
                   "translate-y-[0.22em] opacity-0 blur-xs transition-none",
           )}
         >
-          {word}
+          {i === 0 && word}
         </span>
       ))}
     </span>

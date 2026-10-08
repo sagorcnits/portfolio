@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
 
 import { profile } from "@/content/site";
+import { seo } from "@/lib/seo";
 
-export const alt = `${profile.name} — Full-Stack Developer & AI Product Builder`;
+export const alt = seo.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,14 +35,14 @@ export default function Image() {
           }}
         >
           <div style={{ width: 48, height: 1, background: "#9D9D9D" }} />
-          Portfolio
+          sagorhossain.site
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 96, fontWeight: 600, letterSpacing: -3 }}>
             {profile.name}
           </div>
           <div style={{ marginTop: 16, fontSize: 40, color: "#9D9D9D" }}>
-            Full-Stack Developer & AI Product Builder
+            {seo.tagline}
           </div>
         </div>
         <div style={{ fontSize: 26, color: "#9D9D9D" }}>

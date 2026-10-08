@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 
 import { siteUrl } from "@/lib/seo";
 
-// Single-page site: sections are fragments of "/", so only the canonical home URL is listed.
+// Single-page site: About, Work, Experience, Services and Contact are #fragments of "/",
+// not routes (search engines ignore fragments), so the canonical home URL is the only entry.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {

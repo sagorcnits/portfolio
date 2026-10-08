@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   keywords: seo.keywords,
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
+  publisher: profile.name,
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -34,15 +35,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // OG/Twitter images come from the opengraph-image / twitter-image file conventions.
   openGraph: {
-    type: "profile",
+    type: "website",
     url: "/",
     siteName: profile.name,
     title: seo.title,
     description: seo.description,
     locale: "en_US",
-    firstName: "Sagor",
-    lastName: "Hossain",
   },
   twitter: {
     card: "summary_large_image",
