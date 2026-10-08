@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/portfolio/sidebar";
 import {
   About,
   Contact,
@@ -8,6 +7,7 @@ import {
   TechStack,
   Work,
 } from "@/components/portfolio/sections";
+import { Sidebar } from "@/components/portfolio/sidebar";
 import { WhatsAppButton } from "@/components/portfolio/whatsapp-button";
 import { jsonLd } from "@/lib/seo";
 
@@ -22,10 +22,10 @@ export default function Home() {
       />
       <div
         id="top"
-        className="mx-auto w-full max-w-7xl px-6 md:flex md:gap-12 md:px-10 lg:gap-20 lg:px-16"
+        className="mx-auto w-full max-w-6xl px-6 md:flex md:gap-12 md:px-10 lg:gap-14 2xl:gap-20 lg:px-16"
       >
         <Sidebar />
-        <main className="min-w-0 flex-1 md:py-4">
+        <main className="min-w-0 flex-1">
           <About />
           <Work />
           <Experience />

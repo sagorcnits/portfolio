@@ -144,10 +144,10 @@ export function Sidebar() {
     <>
       <MobileNav active={active} />
 
-      <header className="pt-14 pb-4 md:sticky md:top-0 md:flex md:h-dvh md:w-[36%] md:overflow-y-auto md:overscroll-contain md:scrollbar-none md:shrink-0 md:flex-col md:justify-between md:py-16 lg:w-[40%] lg:py-24">
+      <header className="pt-14 pb-4 md:sticky md:top-0 md:flex md:h-dvh md:w-[36%] md:overflow-y-auto md:overscroll-contain md:scrollbar-none md:shrink-0 md:flex-col md:justify-between md:py-14 lg:w-[40%]">
         <div>
           <Intro />
-          <nav aria-label="Sections" className="mt-16 hidden md:block lg:mt-20">
+          <nav aria-label="Sections" className="mt-12 hidden md:block">
             <ul className="space-y-4">
               {navItems.map((item) => {
                 const isActive = active === item.id;
