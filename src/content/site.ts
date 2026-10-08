@@ -2,6 +2,9 @@
 
 export const profile = {
   name: "Sagor Hossain",
+  // Hero heading keeps the first name fixed and cycles the last name.
+  firstName: "Sagor",
+  lastNames: ["Hossain", "Molla"],
   roles: ["Co-Founder & COO @"],
   statement:
     "I help businesses turn ideas into scalable SaaS products, AI-powered automation, and custom web platforms—built to solve real problems and drive growth.",

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { navItems, profile } from "@/content/site";
 import { cn } from "@/lib/utils";
+import { CyclingWord } from "./cycling-word";
 import { SocialLinks } from "./social-links";
 import { useActiveSection } from "./use-active-section";
 
@@ -15,7 +16,9 @@ function Intro() {
   return (
     <div>
       <h1 className="text-4xl font-semibold tracking-tight md:text-[2.5rem] lg:text-5xl">
-        <a href="#top">{profile.name}</a>
+        <a href="#top">
+          {profile.firstName} <CyclingWord words={profile.lastNames} />
+        </a>
       </h1>
       <ul className="mt-5 space-y-1 text-[0.95rem] text-foreground/80">
         {profile.roles.map((role) => (
