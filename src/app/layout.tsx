@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans } from "next/font/google";
 
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { IntroSequence } from "@/components/intro/intro-sequence";
 import { profile } from "@/content/site";
 import { seo, siteUrl } from "@/lib/seo";
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col overflow-x-clip">
         <IntroSequence />
         {children}
+        <GoogleAnalytics />
       </body>
     </html>
   );

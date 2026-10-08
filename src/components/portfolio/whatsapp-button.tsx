@@ -22,6 +22,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contact me on WhatsApp"
+      data-analytics-location="floating_button"
       className="group fixed right-5 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-30 flex size-16 items-center justify-center rounded-full bg-[#25D366] text-white transition-all duration-300 ease-out outline-none hover:scale-105 hover:bg-[#1EBE5D] focus-visible:scale-105 focus-visible:ring-3 focus-visible:ring-[#25D366]/50 md:right-8 md:bottom-8"
     >
       {/* Rings sit at -z-10 inside the button's stacking context: behind the icon, never over it. */}

@@ -92,6 +92,8 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
             target: "_blank",
             rel: "noopener noreferrer",
             "aria-label": `${project.name} — visit live site (opens in new tab)`,
+            "data-analytics-event": "project_view",
+            "data-analytics-project-name": project.name,
           }
         : {})}
       className="group relative grid grid-cols-[2.25rem_1fr_auto] gap-x-4 gap-y-2 border-t border-border py-7 transition-transform duration-500 ease-out hover:translate-x-1.5 md:grid-cols-[3rem_1fr_auto] md:gap-x-6 md:py-8"

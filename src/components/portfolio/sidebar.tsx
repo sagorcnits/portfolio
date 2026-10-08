@@ -93,6 +93,7 @@ function MobileNav({ active }: { active: string }) {
 
       <div
         id="mobile-menu"
+        data-analytics-location="mobile_menu"
         className={cn(
           "absolute inset-x-0 top-full flex h-[calc(100dvh-3.5rem)] flex-col justify-between gap-10 overflow-y-auto overscroll-contain scrollbar-none bg-background px-6 pt-10 pb-10 transition-all duration-500 ease-out",
           open

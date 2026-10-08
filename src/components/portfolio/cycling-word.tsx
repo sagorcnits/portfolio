@@ -72,12 +72,12 @@ export function CyclingWord({
             "[grid-area:1/1] will-change-[opacity,transform,filter] motion-reduce:transition-none",
             i === index
               ? // Enter: rise from below, slightly after the exit starts.
-                "translate-y-0 opacity-100 blur-0 transition-[opacity,transform,filter] delay-150 duration-[900ms] ease-[cubic-bezier(0.33,1,0.68,1)]"
+                "translate-y-0 opacity-100 blur-0 transition-[opacity,transform,filter] delay-150 duration-900 ease-[cubic-bezier(0.33,1,0.68,1)]"
               : i === prev
                 ? // Exit: drift up and dissolve.
-                  "-translate-y-[0.22em] opacity-0 blur-[4px] transition-[opacity,transform,filter] duration-[600ms] ease-[cubic-bezier(0.32,0,0.67,0)]"
+                  "translate-y-[-0.22em] opacity-0 blur-xs transition-[opacity,transform,filter] duration-600 ease-[cubic-bezier(0.32,0,0.67,0)]"
                 : // Idle: wait below, invisible, no transition so the reset is never seen.
-                  "translate-y-[0.22em] opacity-0 blur-[4px] transition-none",
+                  "translate-y-[0.22em] opacity-0 blur-xs transition-none",
           )}
         >
           {word}
